@@ -29,7 +29,7 @@ public abstract class Pessoa implements Serializable {
 
     public abstract String obterIdentificacao();
 
-
+    public abstract void exibirDetalhes();
     public String getNome() {
         return nome;
     }

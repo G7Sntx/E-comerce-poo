@@ -36,6 +36,10 @@ public class Funcionario extends Pessoa {
         this.cargo = cargo;
     }
 
+    public void exibirDetalhes() {
+        System.out.println("Sou um Funcionário. Matrícula: " + getId());
+    }
+
     public double getSalario() {
         return salario;
     }
