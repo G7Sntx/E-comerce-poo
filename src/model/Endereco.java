@@ -10,11 +10,9 @@ public class Endereco implements Serializable {
     private String cidade;
     private String cep;
 
-    // 1. Construtor Vazio (Obrigatório)
     public Endereco() {
     }
 
-    // 2. Construtor Completo (Obrigatório)
     public Endereco(String logradouro, String numero, String bairro, String cidade, String cep) {
         setLogradouro(logradouro);
         setNumero(numero);
@@ -22,8 +20,6 @@ public class Endereco implements Serializable {
         setCidade(cidade);
         setCep(cep);
     }
-
-    // --- Getters e Setters com Validações ---
 
     public String getLogradouro() {
         return logradouro;
@@ -66,7 +62,6 @@ public class Endereco implements Serializable {
     }
 
     public void setCep(String cep) {
-        // Validação simples de CEP (8 dígitos)
         if (cep == null || cep.length() != 8) throw new IllegalArgumentException("CEP deve ter 8 números.");
         this.cep = cep;
     }
