@@ -1,23 +1,34 @@
 package model;
 
-public abstract class Pessoa {
+import java.io.Serializable;
 
-    protected String nome;
-    protected String cpf;
-    protected String email;
-    protected String telefone;
-    protected String endereco;
+public abstract class Pessoa implements Serializable {
+
+
+    private String nome;
+    private String cpf;
+    private String email;
+    private String telefone;
+    private String endereco;
+
 
     public Pessoa() {
     }
 
-    public Pessoa(String nome, String cpf, String email, String telefone, String endereco) {
+    public Pessoa(String nome, String cpf, String email) {
         setNome(nome);
         setCpf(cpf);
         setEmail(email);
+    }
+
+    public Pessoa(String nome, String cpf, String email, String telefone, String endereco) {
+        this(nome, cpf, email);
         setTelefone(telefone);
         setEndereco(endereco);
     }
+
+    public abstract String obterIdentificacao();
+
 
     public String getNome() {
         return nome;
@@ -35,8 +46,9 @@ public abstract class Pessoa {
     }
 
     public void setCpf(String cpf) {
+        // Validação simples de tamanho, o Main faz a validação completa com ValidadorCPF
         if (cpf == null || cpf.length() != 11) {
-            throw new IllegalArgumentException("CPF inválido.");
+            throw new IllegalArgumentException("CPF deve ter 11 dígitos numéricos.");
         }
         this.cpf = cpf;
     }
@@ -47,7 +59,7 @@ public abstract class Pessoa {
 
     public void setEmail(String email) {
         if (email == null || !email.contains("@")) {
-            throw new IllegalArgumentException("Email inválido.");
+            throw new IllegalArgumentException("Email inválido (precisa ter @).");
         }
         this.email = email;
     }
@@ -57,9 +69,6 @@ public abstract class Pessoa {
     }
 
     public void setTelefone(String telefone) {
-        if (telefone == null || telefone.isBlank()) {
-            throw new IllegalArgumentException("Telefone inválido.");
-        }
         this.telefone = telefone;
     }
 
@@ -68,20 +77,11 @@ public abstract class Pessoa {
     }
 
     public void setEndereco(String endereco) {
-        if (endereco == null || endereco.isBlank()) {
-            throw new IllegalArgumentException("Endereço inválido.");
-        }
         this.endereco = endereco;
     }
 
-    public abstract String getTipo();
-
     @Override
     public String toString() {
-        return "\nNome: " + nome +
-                "\nCPF: " + cpf +
-                "\nEmail: " + email +
-                "\nTelefone: " + telefone +
-                "\nEndereço: " + endereco;
+        return "Nome: " + nome + " | CPF: " + cpf;
     }
 }

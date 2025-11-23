@@ -24,7 +24,12 @@ public class Cliente extends Pessoa {
         this.codigoCliente = codigoCliente;
     }
 
+
     @Override
+    public String obterIdentificacao() {
+        return getTipo() + ": " + getNome() + " (Cód: " + codigoCliente + ")";
+    }
+
     public String getTipo() {
         return "Cliente";
     }

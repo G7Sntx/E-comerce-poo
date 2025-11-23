@@ -1,28 +1,44 @@
 package model;
 
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class Pedido {
+public class Pedido implements Serializable {
 
-    private int idPedido;
+    private int id;
     private Cliente cliente;
-    private ArrayList<Produto> produtos = new ArrayList<>();
-    private double valorTotal;
+    private LocalDate data;
+    private ArrayList<ItemPedido> itens = new ArrayList<>();
 
     public Pedido() {
     }
 
-    public Pedido(int idPedido, Cliente cliente) {
-        this.idPedido = idPedido;
+    public Pedido(int id, Cliente cliente, LocalDate data) {
+        this.id = id;
         this.cliente = cliente;
+        this.data = data;
     }
 
-    public int getIdPedido() {
-        return idPedido;
+    public void adicionarItem(ItemPedido item) {
+        itens.add(item);
     }
 
-    public void setIdPedido(int idPedido) {
-        this.idPedido = idPedido;
+    public double calcularTotal() {
+        double total = 0;
+        for (ItemPedido i : itens) {
+            total += i.calcularSubtotal();
+        }
+        return total;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Cliente getCliente() {
@@ -33,24 +49,26 @@ public class Pedido {
         this.cliente = cliente;
     }
 
-    public ArrayList<Produto> getProdutos() {
-        return produtos;
+    public LocalDate getData() {
+        return data;
     }
 
-    public void adicionarProduto(Produto p) {
-        produtos.add(p);
-        valorTotal += p.getPreco();
+    public void setData(LocalDate data) {
+        this.data = data;
     }
 
-    public double getValorTotal() {
-        return valorTotal;
+    public ArrayList<ItemPedido> getItens() {
+        return itens;
     }
 
     @Override
     public String toString() {
-        return "Pedido #" + idPedido +
+        String dataFormatada = (data != null) ? data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) : "Sem data";
+
+        return "Pedido #" + id +
+                "\nData: " + dataFormatada +
                 "\nCliente: " + cliente.getNome() +
-                "\nProdutos: " + produtos.size() +
-                "\nTotal: R$ " + valorTotal;
+                "\nQtd Itens: " + itens.size() +
+                "\nTotal: R$ " + String.format("%.2f", calcularTotal());
     }
 }
