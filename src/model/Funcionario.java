@@ -1,6 +1,6 @@
 package model;
 
-public class Funcionario extends Pessoa{
+public class Funcionario extends Pessoa implements Serializable {
 
         private String matricula;
         private String cargo;

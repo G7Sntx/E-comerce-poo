@@ -1,6 +1,6 @@
 package model;
 
-public class Fornecedor extends Pessoa{
+public class Fornecedor extends Pessoa implements Serializable {
 
         private String cnpj;
         private String nomeEmpresa;

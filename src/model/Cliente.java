@@ -1,6 +1,6 @@
 package model;
 
-public class Cliente extends Pessoa {
+public class Cliente extends Pessoa implements Serializable {
 
     private String codigoCliente;
 
