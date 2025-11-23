@@ -46,7 +46,6 @@ public abstract class Pessoa implements Serializable {
     }
 
     public void setCpf(String cpf) {
-        // Validação simples de tamanho, o Main faz a validação completa com ValidadorCPF
         if (cpf == null || cpf.length() != 11) {
             throw new IllegalArgumentException("CPF deve ter 11 dígitos numéricos.");
         }
