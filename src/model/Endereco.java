@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Endereco implements Serializable {
 
-    private String logradouro; // Rua, Avenida...
+    private String logradouro;
     private String numero;
     private String bairro;
     private String cidade;
