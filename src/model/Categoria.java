@@ -1,4 +1,4 @@
 package model;
 
-public class Categoria {
+public class testeCategoria {
 }
