@@ -2,11 +2,19 @@ package model;
 
 public class Funcionario extends Pessoa {
 
+    private static final long serialVersionUID = 1L;
+
     private String cargo;
     private double salario;
 
     public Funcionario() {
         super();
+    }
+
+    public Funcionario(String nome, String cpf, String cargo, double salario) {
+        super(nome, cpf, "");
+        this.cargo = cargo;
+        setSalario(salario);
     }
 
     public Funcionario(String nome, String cpf, String email, String cargo, double salario) {
