@@ -4,21 +4,17 @@ import java.io.Serializable;
 
 public class Categoria implements Serializable {
 
-    // Atributos privados (Encapsulamento)
     private int id;
     private String nome;
 
-    // Construtor Vazio (Obrigatório)
+
     public Categoria() {
     }
 
-    // Construtor com Parâmetros (Obrigatório)
     public Categoria(int id, String nome) {
         setId(id);
         setNome(nome);
     }
-
-    // Getters e Setters com Validação (Obrigatório)
 
     public int getId() {
         return id;
@@ -42,7 +38,6 @@ public class Categoria implements Serializable {
         this.nome = nome;
     }
 
-    // Método toString para facilitar a impressão
     @Override
     public String toString() {
         return "Categoria: " + nome + " (ID: " + id + ")";
