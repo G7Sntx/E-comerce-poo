@@ -1,0 +1,7 @@
+=== RELATORIO DE VENDAS ===
+
+Data: 2025-06-23 | Cliente: Ana Souza | Valor: R$ 1500.0
+Data: 2025-08-23 | Cliente: Carlos Lima | Valor: R$ 450.0
+Data: 2025-11-23 | Cliente: Ana Souza | Valor: R$ 250.0
+
+TOTAL GERAL: R$ 2200.0

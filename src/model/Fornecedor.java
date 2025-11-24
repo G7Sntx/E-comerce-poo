@@ -2,6 +2,8 @@ package model;
 
 public class Fornecedor extends Pessoa {
 
+    private static final long serialVersionUID = 1L;
+
     private String nomeFantasia;
     private String cnpj;
 

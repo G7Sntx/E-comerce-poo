@@ -4,7 +4,9 @@ import java.io.Serializable;
 
 public class Endereco implements Serializable {
 
-    private String logradouro;
+    private static final long serialVersionUID = 1L;
+
+    private String logradouro; // Rua, Avenida...
     private String numero;
     private String bairro;
     private String cidade;
@@ -62,6 +64,7 @@ public class Endereco implements Serializable {
     }
 
     public void setCep(String cep) {
+        // Validação simples de CEP (8 dígitos)
         if (cep == null || cep.length() != 8) throw new IllegalArgumentException("CEP deve ter 8 números.");
         this.cep = cep;
     }
