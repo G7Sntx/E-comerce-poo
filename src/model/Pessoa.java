@@ -4,23 +4,20 @@ import java.io.Serializable;
 
 public abstract class Pessoa implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+
     private String nome;
     private String cpf;
     private String email;
     private String telefone;
     private String endereco;
 
+
     public Pessoa() {
     }
 
-    public Pessoa(String nome, String cpf) {
+    public Pessoa(String nome, String cpf, String email) {
         setNome(nome);
         setCpf(cpf);
-    }
-
-    public Pessoa(String nome, String cpf, String email) {
-        this(nome, cpf);
         setEmail(email);
     }
 
@@ -29,6 +26,9 @@ public abstract class Pessoa implements Serializable {
         setTelefone(telefone);
         setEndereco(endereco);
     }
+
+    public abstract String obterIdentificacao();
+
 
     public String getNome() {
         return nome;
@@ -78,9 +78,6 @@ public abstract class Pessoa implements Serializable {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
-
-    public abstract String obterIdentificacao();
-    public abstract void exibirDetalhes();
 
     @Override
     public String toString() {

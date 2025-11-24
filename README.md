@@ -26,6 +26,76 @@ Sistema de vendas simples que gerencia produtos, clientes, pedidos e relatórios
 
 ## Histórico de commits
 
+Crianco classe abstratas e filha definidas
+G7Sntx
+G7Sntx
+committed
+yesterday.
+Implementando classes pessoas e Produto
+G7Sntx
+G7Sntx
+committed
+yesterday.
+Implementando classes util
+G7Sntx
+G7Sntx
+committed
+yesterday.
+Principal mudança no main e acrescentando alguns validadores
+G7Sntx
+G7Sntx
+committed
+20 hours ago.
+Acrescentado pequenas mudanças na classe SaldoInsuficienteException
+G7Sntx
+G7Sntx
+committed
+19 hours ago.
+Correções
+Alysson-AS
+Alysson-AS
+committed
+19 hours ago.
+Correções
+Alysson-AS
+Alysson-AS
+committed
+19 hours ago.
+Adicionando "implements Serializable"
+Alysson-AS
+Alysson-AS
+committed
+19 hours ago.
+Acrescentando classe Categoria
+G7Sntx
+G7Sntx
+committed
+18 hours ago.Acrescentando classe Categoria
+G7Sntx
+G7Sntx
+committed
+18 hours ago.
+Corrigindo erros das classes Funcionario e Fornecedor
+G7Sntx
+G7Sntx
+committed
+18 hours ago.
+implementar classe de Endereco
+G7Sntx
+G7Sntx
+committed
+17 hours ago.
+implementar classe de Endereco
+G7Sntx
+G7Sntx
+committed
+17 hours ago.
+corrigindo pequenos bugs
+G7Sntx
+G7Sntx
+committed
+17 hours ago.
+
 
 ## Dados iniciais
 - `dados/produtos.csv` — contém 40 produtos

@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 public class Pedido implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     private int id;
     private Cliente cliente;
     private LocalDate data;
