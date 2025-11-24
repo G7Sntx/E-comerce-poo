@@ -18,7 +18,8 @@ public class Main {
     public static void main(String[] args) {
 
         carregarDados();
-        if (clientes.isEmpty()) {
+
+        if (clientes.isEmpty() || produtos.isEmpty()) {
             inicializarDadosTeste();
         }
 
@@ -50,7 +51,9 @@ public class Main {
                 case 5: listarProdutos(); break;
                 case 6: listarPedidos(); break;
                 case 7:
+
                     RelatorioGenerator.gerarRelatorio(pedidos);
+                    System.out.println("Relatório gerado com sucesso na pasta do projeto!");
                     break;
                 case 0:
                     System.out.println("Salvando dados e saindo...");
@@ -72,7 +75,7 @@ public class Main {
             String cpf = sc.nextLine();
 
             if (!ValidadorCPF.validar(cpf)) {
-                throw new CPFInvalidoException("CPF inválido! Tente novamente.");
+                throw new CPFInvalidoException("CPF inválido! O cálculo dos dígitos não confere.");
             }
 
             System.out.print("Email: ");
@@ -89,107 +92,130 @@ public class Main {
             System.out.println("Cliente cadastrado com sucesso!");
 
         } catch (CPFInvalidoException e) {
-            System.out.println("ERRO: " + e.getMessage());
+            System.out.println("ERRO DE VALIDAÇÃO: " + e.getMessage());
         } catch (Exception e) {
-            System.out.println("Erro ao cadastrar: " + e.getMessage());
+            System.out.println("Erro genérico ao cadastrar: " + e.getMessage());
         }
     }
 
     private static void cadastrarProduto() {
-        System.out.println("\n--- Cadastro de Produto ---");
-        System.out.print("ID: ");
-        int id = Integer.parseInt(sc.nextLine());
-        System.out.print("Nome: ");
-        String nome = sc.nextLine();
-        System.out.print("Preço: ");
-        double preco = Double.parseDouble(sc.nextLine());
-        System.out.print("Estoque: ");
-        int est = Integer.parseInt(sc.nextLine());
+        try {
+            System.out.println("\n--- Cadastro de Produto ---");
+            System.out.print("ID: ");
+            int id = Integer.parseInt(sc.nextLine());
+            System.out.print("Nome: ");
+            String nome = sc.nextLine();
+            System.out.print("Preço: ");
+            double preco = Double.parseDouble(sc.nextLine());
+            System.out.print("Estoque: ");
+            int est = Integer.parseInt(sc.nextLine());
 
-        Produto p = new Produto(id, nome, preco, est);
-        produtos.add(p);
-        System.out.println("Produto cadastrado!");
+            Produto p = new Produto(id, nome, preco, est);
+            produtos.add(p);
+            System.out.println("Produto cadastrado!");
+        } catch (NumberFormatException e) {
+            System.out.println("Erro: Digite valores numéricos válidos para Preço/Estoque/ID.");
+        }
     }
 
     private static void criarPedido() {
         System.out.println("\n--- Criar Pedido ---");
 
         if (clientes.isEmpty() || produtos.isEmpty()) {
-            System.out.println("Cadastre pelo menos 1 cliente e 1 produto.");
+            System.out.println("Erro: Cadastre pelo menos 1 cliente e 1 produto antes.");
             return;
         }
 
-        System.out.print("ID do pedido: ");
-        int id = Integer.parseInt(sc.nextLine());
+        try {
+            System.out.print("ID do pedido: ");
+            int id = Integer.parseInt(sc.nextLine());
 
-        System.out.println("Escolha o cliente pelo índice:");
-        for (int i = 0; i < clientes.size(); i++) {
-            System.out.println(i + " - " + clientes.get(i).getNome());
-        }
-        int idxCliente = Integer.parseInt(sc.nextLine());
+            System.out.println("Escolha o cliente pelo índice:");
+            for (int i = 0; i < clientes.size(); i++) {
+                System.out.println(i + " - " + clientes.get(i).getNome());
+            }
+            int idxCliente = Integer.parseInt(sc.nextLine());
 
-        if (idxCliente < 0 || idxCliente >= clientes.size()) {
-            System.out.println("Cliente inválido.");
-            return;
-        }
-
-        Pedido pedido = new Pedido(id, clientes.get(idxCliente), LocalDate.now());
-
-        int op = -1;
-        do {
-            System.out.println("\nAdicionar produtos:");
-            for (int i = 0; i < produtos.size(); i++) {
-                System.out.println(i + " - " + produtos.get(i).getNome() + " (R$ " + produtos.get(i).getPreco() + ")");
+            if (idxCliente < 0 || idxCliente >= clientes.size()) {
+                System.out.println("Índice de cliente inválido.");
+                return;
             }
 
-            System.out.print("Escolha o produto (ou -1 para finalizar): ");
-            try {
-                op = Integer.parseInt(sc.nextLine());
-            } catch(Exception e) { op = -1; }
+            Pedido pedido = new Pedido(id, clientes.get(idxCliente), LocalDate.now());
 
-            if (op >= 0 && op < produtos.size()) {
-                System.out.print("Quantidade: ");
-                int qtd = Integer.parseInt(sc.nextLine());
+            int op = -1;
+            do {
+                System.out.println("\nAdicionar produtos:");
+                for (int i = 0; i < produtos.size(); i++) {
+                    System.out.println(i + " - " + produtos.get(i).getNome() + " (R$ " + produtos.get(i).getPreco() + ")");
+                }
 
-                Produto prodSelecionado = produtos.get(op);
-                ItemPedido item = new ItemPedido(prodSelecionado, qtd);
-                pedido.adicionarItem(item);
-                System.out.println("Item adicionado!");
+                System.out.print("Escolha o produto pelo índice (ou -1 para finalizar): ");
+                try {
+                    op = Integer.parseInt(sc.nextLine());
+                } catch(Exception e) { op = -1; }
+
+                if (op >= 0 && op < produtos.size()) {
+                    System.out.print("Quantidade: ");
+                    int qtd = Integer.parseInt(sc.nextLine());
+
+                    Produto prodSelecionado = produtos.get(op);
+
+                    try {
+                        ItemPedido item = new ItemPedido(prodSelecionado, qtd);
+                        pedido.adicionarItem(item);
+                        System.out.println("Item adicionado!");
+                    } catch (Exception e) {
+                        System.out.println("Erro ao adicionar item: " + e.getMessage());
+                    }
+                }
+
+            } while (op != -1);
+
+            if (!pedido.getItens().isEmpty()) {
+                pedidos.add(pedido);
+                System.out.println("Pedido criado com sucesso!");
+            } else {
+                System.out.println("Pedido cancelado (nenhum item adicionado).");
             }
 
-        } while (op != -1);
-
-        pedidos.add(pedido);
-        System.out.println("Pedido criado com sucesso!");
+        } catch (NumberFormatException e) {
+            System.out.println("Erro: Entrada inválida. Digite números.");
+        }
     }
 
     private static void listarClientes() {
-        System.out.println("\n--- Clientes ---");
+        System.out.println("\n--- Lista de Clientes ---");
+        if (clientes.isEmpty()) System.out.println("Nenhum cliente cadastrado.");
         for (Cliente c : clientes) {
             System.out.println(c.obterIdentificacao() + " | CPF: " + c.getCpf());
         }
     }
 
     private static void listarProdutos() {
-        System.out.println("\n--- Produtos ---");
+        System.out.println("\n--- Lista de Produtos ---");
+        if (produtos.isEmpty()) System.out.println("Nenhum produto cadastrado.");
         for (Produto p : produtos) {
-            System.out.println("ID: " + p.getId() + " | " + p.getNome() + " | R$ " + p.getPreco());
+            System.out.println(p);
         }
     }
 
     private static void listarPedidos() {
-        System.out.println("\n--- Pedidos ---");
+        System.out.println("\n--- Lista de Pedidos ---");
+        if (pedidos.isEmpty()) System.out.println("Nenhum pedido realizado.");
         for (Pedido p : pedidos) {
-            System.out.println("ID: " + p.getId() + " | Data: " + p.getData() + " | Cliente: " + p.getCliente().getNome() + " | Total: R$ " + p.calcularTotal());
+            System.out.println("ID: " + p.getId() + " | Data: " + p.getData() + " | Cliente: " + p.getCliente().getNome() + " | Total: R$ " + String.format("%.2f", p.calcularTotal()));
         }
     }
 
     private static void salvarDados() {
+
         ArquivoUtil.salvar(clientes, "clientes.db");
         ArquivoUtil.salvar(produtos, "produtos.db");
         ArquivoUtil.salvar(pedidos, "pedidos.db");
     }
 
+    @SuppressWarnings("unchecked")
     private static void carregarDados() {
         try {
             Object c = ArquivoUtil.carregar("clientes.db");
@@ -200,13 +226,16 @@ public class Main {
 
             Object ped = ArquivoUtil.carregar("pedidos.db");
             if (ped != null) pedidos = (ArrayList<Pedido>) ped;
+
+            System.out.println("Dados carregados com sucesso.");
         } catch (Exception e) {
-            System.out.println("Base de dados vazia ou nova.");
+            System.out.println("Iniciando com base de dados vazia.");
         }
     }
 
     private static void inicializarDadosTeste() {
-        System.out.println("Gerando dados de teste para os últimos 6 meses...");
+        System.out.println("Gerando dados de teste automáticos (Histórico de 6 meses)...");
+
         Cliente c1 = new Cliente("Ana Souza", "11122233344", "ana@gmail.com", "9999-9999", "Rua A", "C01");
         Cliente c2 = new Cliente("Carlos Lima", "55566677788", "carlos@hotmail.com", "8888-8888", "Rua B", "C02");
         clientes.add(c1);
@@ -231,5 +260,7 @@ public class Main {
         Pedido ped3 = new Pedido(103, c1, LocalDate.now());
         ped3.adicionarItem(new ItemPedido(p3, 5));
         pedidos.add(ped3);
+
+        System.out.println("Dados de teste gerados!");
     }
 }
