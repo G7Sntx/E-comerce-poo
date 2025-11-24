@@ -3,6 +3,7 @@
 ## Integrantes
 - Anderson Guilherme
 - Alysson Araujo
+- Rodolfo Rodrigo Padilha
 
 ## Descrição
 Sistema de vendas simples que gerencia produtos, clientes, pedidos e relatórios. Implementa serialização para persistência entre execuções.

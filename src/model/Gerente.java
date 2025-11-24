@@ -11,7 +11,7 @@ public class Gerente extends Funcionario {
 
 
     public Gerente(String nome, String cpf, String cargo, double salario, double bonusAnual) {
-        super(nome, cpf, cargo, salario); // Chama o construtor de Funcionario
+        super(nome, cpf, cargo, salario);
         this.bonusAnual = bonusAnual;
     }
 
