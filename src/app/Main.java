@@ -15,9 +15,6 @@ public class Main {
     private static ArrayList<Produto> produtos = new ArrayList<>();
     private static ArrayList<Pedido> pedidos = new ArrayList<>();
 
-    private static ArrayList<Pessoa> pessoas = new ArrayList<>();
-    private static ArrayList<Loja> lojas = new ArrayList<>();
-
     public static void main(String[] args) {
 
         carregarDados();
@@ -36,8 +33,6 @@ public class Main {
             System.out.println("5 - Listar Produtos");
             System.out.println("6 - Listar Pedidos");
             System.out.println("7 - Gerar Relatório de Vendas (Arquivo)");
-            System.out.println("8 - DEMONSTRAR POLIMORFISMO (ArrayList<Pessoa>)");
-            System.out.println("9 - DEMONSTRAR RELACIONAMENTO 1:N (Loja)");
             System.out.println("0 - Sair e Salvar");
             System.out.print("Escolha: ");
 
@@ -57,8 +52,6 @@ public class Main {
                 case 7:
                     RelatorioGenerator.gerarRelatorio(pedidos);
                     break;
-                case 8: demonstrarPolimorfismo(); break;
-                case 9: demonstrarRelacionamento1N(); break;
                 case 0:
                     System.out.println("Salvando dados e saindo...");
                     salvarDados();
@@ -67,37 +60,6 @@ public class Main {
             }
 
         } while (opcao != 0);
-    }
-
-    private static void salvarDados() {
-        ArquivoUtil.salvar(clientes, "clientes.db");
-        ArquivoUtil.salvar(produtos, "produtos.db");
-        ArquivoUtil.salvar(pedidos, "pedidos.db");
-
-        ArquivoUtil.salvar(lojas, "lojas.db");
-        ArquivoUtil.salvar(pessoas, "pessoas.db");
-    }
-
-    private static void carregarDados() {
-        try {
-            Object c = ArquivoUtil.carregar("clientes.db");
-            if (c != null) clientes = (ArrayList<Cliente>) c;
-
-            Object p = ArquivoUtil.carregar("produtos.db");
-            if (p != null) produtos = (ArrayList<Produto>) p;
-
-            Object ped = ArquivoUtil.carregar("pedidos.db");
-            if (ped != null) pedidos = (ArrayList<Pedido>) ped;
-
-            Object loj = ArquivoUtil.carregar("lojas.db");
-            if (loj != null) lojas = (ArrayList<Loja>) loj;
-
-            Object pes = ArquivoUtil.carregar("pessoas.db");
-            if (pes != null) pessoas = (ArrayList<Pessoa>) pes;
-
-        } catch (Exception e) {
-            System.out.println("Base de dados vazia ou nova.");
-        }
     }
 
     private static void cadastrarCliente() {
@@ -124,8 +86,6 @@ public class Main {
 
             Cliente c = new Cliente(nome, cpf, email, tel, end, cod);
             clientes.add(c);
-            pessoas.add(c);
-
             System.out.println("Cliente cadastrado com sucesso!");
 
         } catch (CPFInvalidoException e) {
@@ -224,91 +184,26 @@ public class Main {
         }
     }
 
-    private static void demonstrarPolimorfismo() {
-        System.out.println("\n========================================");
-        System.out.println("DEMONSTRAÇÃO: POLIMORFISMO COM ArrayList<Pessoa>");
-        System.out.println("========================================");
-
-        if (pessoas.isEmpty()) {
-            System.out.println("\nPopulando ArrayList polimórfico com diferentes tipos de Pessoa...\n");
-
-            for (Cliente c : clientes) {
-                if (!pessoas.contains(c)) pessoas.add(c);
-            }
-
-            Funcionario f1 = new Funcionario("Carlos Souza", "11111111111", "carlos@empresa.com",
-                    "Vendedor", 2500.00);
-            Fornecedor forn1 = new Fornecedor("Roberto Lima", "33333333333", "roberto@fornecedor.com",
-                    "Distribuidora XYZ", "12345678000199");
-            Gerente g1 = new Gerente("Patricia Oliveira", "44444444444", "Gerente de Vendas",
-                    5000.00, 12000.00);
-
-            pessoas.add(f1);
-            pessoas.add(forn1);
-            pessoas.add(g1);
-
-
-            pessoas.add(f1);
-            pessoas.add(forn1);
-            pessoas.add(g1);
-
-            System.out.println("✅ ArrayList<Pessoa> populado com " + pessoas.size() + " objetos!");
-        }
-
-        System.out.println("\n--- POLIMORFISMO EM AÇÃO ---");
-        System.out.println("Chamando o método obterIdentificacao() para cada objeto:\n");
-
-        for (Pessoa p : pessoas) {
-            System.out.println("-> " + p.obterIdentificacao());
-        }
-
-        System.out.println("\n📌 EXPLICAÇÃO:");
-        System.out.println("- A variável é do tipo Pessoa, mas o método executado é o da classe real (Cliente, Funcionario, etc.).");
-        System.out.println("========================================\n");
+    private static void salvarDados() {
+        ArquivoUtil.salvar(clientes, "clientes.db");
+        ArquivoUtil.salvar(produtos, "produtos.db");
+        ArquivoUtil.salvar(pedidos, "pedidos.db");
     }
 
-    private static void demonstrarRelacionamento1N() {
-        System.out.println("\n========================================");
-        System.out.println("DEMONSTRAÇÃO: RELACIONAMENTO 1:N (Loja → Produtos)");
-        System.out.println("========================================");
+    private static void carregarDados() {
+        try {
+            Object c = ArquivoUtil.carregar("clientes.db");
+            if (c != null) clientes = (ArrayList<Cliente>) c;
 
-        if (lojas.isEmpty()) {
-            System.out.println("\nCriando lojas e adicionando produtos...\n");
+            Object p = ArquivoUtil.carregar("produtos.db");
+            if (p != null) produtos = (ArrayList<Produto>) p;
 
-            Loja loja1 = new Loja(1, "Loja Centro", "12345678000100");
-            Loja loja2 = new Loja(2, "Loja Shopping", "98765432000199");
-
-            if (produtos.size() >= 3) {
-                loja1.adicionarProduto(produtos.get(0));
-                loja1.adicionarProduto(produtos.get(1));
-                loja2.adicionarProduto(produtos.get(2));
-            } else {
-                System.out.println("⚠️ Cadastre mais produtos para a demonstração 1:N.");
-            }
-
-            lojas.add(loja1);
-            lojas.add(loja2);
-
-            System.out.println("\n✅ Lojas criadas e produtos adicionados!");
+            Object ped = ArquivoUtil.carregar("pedidos.db");
+            if (ped != null) pedidos = (ArrayList<Pedido>) ped;
+        } catch (Exception e) {
+            System.out.println("Base de dados vazia ou nova.");
         }
-
-        System.out.println("\n--- RELACIONAMENTO 1:N ---");
-        System.out.println("UMA Loja pode ter VÁRIOS Produtos\n");
-
-        for (Loja loja : lojas) {
-            System.out.println("📍 " + loja.toString());
-            loja.listarProdutos();
-            System.out.println("💰 Valor total do estoque: R$ " +
-                    String.format("%.2f", loja.calcularValorTotalEstoque()));
-            System.out.println();
-        }
-
-        System.out.println("📌 EXPLICAÇÃO:");
-        System.out.println("- Cada objeto Loja possui um ArrayList<Produto>.");
-        System.out.println("- Isso é um relacionamento 1:N (um-para-muitos).");
-        System.out.println("========================================\n");
     }
-
 
     private static void inicializarDadosTeste() {
         System.out.println("Gerando dados de teste para os últimos 6 meses...");
@@ -316,9 +211,6 @@ public class Main {
         Cliente c2 = new Cliente("Carlos Lima", "55566677788", "carlos@hotmail.com", "8888-8888", "Rua B", "C02");
         clientes.add(c1);
         clientes.add(c2);
-
-        pessoas.add(c1);
-        pessoas.add(c2);
 
         Produto p1 = new Produto(1, "Smartphone", 1500.00, 20);
         Produto p2 = new Produto(2, "Fone Bluetooth", 200.00, 50);

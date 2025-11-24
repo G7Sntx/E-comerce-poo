@@ -1,11 +1,11 @@
 package util;
 
 import model.Pedido;
-import java.util.ArrayList;
+import java.util.List;
 
 public class RelatorioGenerator {
 
-    public static void gerarRelatorio(ArrayList<Pedido> lista) {
+    public static void gerarRelatorio(List<Pedido> lista) {
         String texto = "=== RELATORIO DE VENDAS ===\n\n";
         double totalGeral = 0;
 

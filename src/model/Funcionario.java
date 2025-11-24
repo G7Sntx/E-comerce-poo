@@ -3,7 +3,7 @@ package model;
 public class Funcionario extends Pessoa {
 
     private static final long serialVersionUID = 1L;
-
+    private int id;
     private String cargo;
     private double salario;
 
@@ -20,6 +20,7 @@ public class Funcionario extends Pessoa {
     public Funcionario(String nome, String cpf, String email, String cargo, double salario) {
         super(nome, cpf, email);
         this.cargo = cargo;
+        this.id = id;
         setSalario(salario);
     }
 
@@ -34,6 +35,17 @@ public class Funcionario extends Pessoa {
 
     public void setCargo(String cargo) {
         this.cargo = cargo;
+    }
+
+    public void exibirDetalhes() {
+        System.out.println("Sou um Funcionário. Matrícula: " + getId());
+    }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public double getSalario() {

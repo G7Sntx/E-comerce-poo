@@ -32,7 +32,9 @@ public class Cliente extends Pessoa implements Serializable {
     public String obterIdentificacao() {
         return getTipo() + ": " + getNome() + " (Cód: " + codigoCliente + ")";
     }
-
+    public void exibirDetalhes() {
+        System.out.println("Sou um Cliente VIP: " + getNome());
+    }
     public String getTipo() {
         return "Cliente";
     }

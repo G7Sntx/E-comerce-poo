@@ -1,7 +1,29 @@
 === RELATORIO DE VENDAS ===
 
-Data: 2025-06-23 | Cliente: Ana Souza | Valor: R$ 1500.0
-Data: 2025-08-23 | Cliente: Carlos Lima | Valor: R$ 450.0
-Data: 2025-11-23 | Cliente: Ana Souza | Valor: R$ 250.0
+Data: 2025-05-10 | Cliente: Julia Pereira | Valor: R$ 6199.0
+Data: 2025-05-08 | Cliente: Julia Pereira | Valor: R$ 9998.0
+Data: 2025-05-19 | Cliente: Lucas Silva | Valor: R$ 3749.9
+Data: 2025-06-10 | Cliente: Mariana Santos | Valor: R$ 2397.9
+Data: 2025-06-05 | Cliente: Julia Pereira | Valor: R$ 2998.0
+Data: 2025-06-16 | Cliente: Roberto Costa | Valor: R$ 1140.0
+Data: 2025-06-23 | Cliente: Roberto Costa | Valor: R$ 2850.0
+Data: 2025-07-12 | Cliente: Roberto Costa | Valor: R$ 1200.0
+Data: 2025-07-04 | Cliente: Roberto Costa | Valor: R$ 7450.0
+Data: 2025-07-12 | Cliente: Julia Pereira | Valor: R$ 2400.0
+Data: 2025-07-16 | Cliente: Julia Pereira | Valor: R$ 8139.9
+Data: 2025-08-12 | Cliente: Lucas Silva | Valor: R$ 899.9
+Data: 2025-08-16 | Cliente: Mariana Santos | Valor: R$ 2159.8
+Data: 2025-08-20 | Cliente: Mariana Santos | Valor: R$ 1498.0
+Data: 2025-09-13 | Cliente: Lucas Silva | Valor: R$ 958.0
+Data: 2025-09-17 | Cliente: Lucas Silva | Valor: R$ 5300.0
+Data: 2025-09-23 | Cliente: Mariana Santos | Valor: R$ 1048.0
+Data: 2025-10-08 | Cliente: Julia Pereira | Valor: R$ 2939.0
+Data: 2025-10-14 | Cliente: Julia Pereira | Valor: R$ 450.0
+Data: 2025-10-18 | Cliente: Lucas Silva | Valor: R$ 4998.0
+Data: 2025-11-11 | Cliente: Julia Pereira | Valor: R$ 4639.9
+Data: 2025-11-18 | Cliente: Julia Pereira | Valor: R$ 1196.0
+Data: 2025-11-12 | Cliente: Mariana Santos | Valor: R$ 899.9
+Data: 2025-11-11 | Cliente: Roberto Costa | Valor: R$ 718.0
+Data: 2025-11-17 | Cliente: Roberto Costa | Valor: R$ 1499.0
 
-TOTAL GERAL: R$ 2200.0
+TOTAL GERAL: R$ 77726.2
