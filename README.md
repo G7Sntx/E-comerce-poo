@@ -26,17 +26,17 @@ Sistema de vendas simples que gerencia produtos, clientes, pedidos e relatórios
 
 ## Histórico de commits
 
-Crianco classe abstratas e filha definidas - G7Sntx
-Implementando classes pessoas e Produto - G7Sntx
-Implementando classes util - G7Sntx
-Principal mudança no main e acrescentando alguns validadores - G7Sntx
-Acrescentado pequenas mudanças na classe SaldoInsuficienteException - Alysson-AS
-Correções - Alysson-AS
-Adicionando "implements Serializable" - Alysson-AS
-Acrescentando classe Categoria - G7Sntx
-Corrigindo erros das classes Funcionario e Fornecedor - G7Sntx
-implementar classe de Endereco - Alysson-AS
-corrigindo pequenos bugs - Alysson-AS
+- Crianco classe abstratas e filha definidas - G7Sntx
+- Implementando classes pessoas e Produto - G7Sntx
+- Implementando classes util - G7Sntx
+- Principal mudança no main e acrescentando alguns validadores - G7Sntx
+- Acrescentado pequenas mudanças na classe SaldoInsuficienteException - Alysson-AS
+- Correções - Alysson-AS
+- Adicionando "implements Serializable" - Alysson-AS
+- Acrescentando classe Categoria - G7Sntx
+- Corrigindo erros das classes Funcionario e Fornecedor - G7Sntx
+- implementar classe de Endereco - Alysson-AS
+- corrigindo pequenos bugs - Alysson-AS
 
 
 
